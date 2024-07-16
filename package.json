@@ -4,8 +4,6 @@
   "displayName": "Orazgylyjov AudioSystem",
   "description": "AudioSystem for all projects",
   "unity": "2019.1",
-  "dependencies": {
-  },
   "keywords": [
     "AudioSystem",
     "upm"
