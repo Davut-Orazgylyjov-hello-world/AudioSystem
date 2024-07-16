@@ -34,10 +34,7 @@ namespace AudioSystem
         {
             if (_instance == null)
                 _instance = this;
-        }
-
-        private void Start()
-        {
+            
             InitializePool();
         }
 
