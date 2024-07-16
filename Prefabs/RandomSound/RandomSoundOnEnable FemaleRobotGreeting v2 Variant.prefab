@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2324320637282399567
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1795818336110694268, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795818336110694268, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: soundConfiguration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795818336110694268, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec9a07e599a1523438a6a18a66a787f8, type: 3}
+    - target: {fileID: 1795818336110694268, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: da0f7ace836c68242804aabac8c1c76d, type: 3}
+    - target: {fileID: 1795818336110694268, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: sounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6326b702e4a7d541bc17b46dd3c3718, type: 3}
+    - target: {fileID: 1795818336110694268, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: sounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: d0588e49d1bef6c42bcf4c943bb7ca2e, type: 3}
+    - target: {fileID: 1795818336110694268, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: sounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: a628f00bc6330574b8c2f9a8239dce5e, type: 3}
+    - target: {fileID: 3698907975325804698, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_Name
+      value: RandomSoundOnEnable FemaleRobotGreeting v2 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729290974201545379, guid: 101f2197c464b10409996e71ad2cfa32,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 101f2197c464b10409996e71ad2cfa32, type: 3}

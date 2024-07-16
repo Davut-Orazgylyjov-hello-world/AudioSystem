@@ -1,0 +1,16 @@
+{
+  "name": "com.OrazgylyjovFuteres.AudioSystem",
+  "version": "1.0.0",
+  "displayName": "Orazgylyjov AudioSystem",
+  "description": "AudioSystem for all projects",
+  "unity": "2019.1",
+  "dependencies": {
+  },
+  "keywords": [
+    "AudioSystem",
+    "upm"
+  ],
+  "author": {
+    "name": "Orazgylyjov Davut"
+  }
+}
