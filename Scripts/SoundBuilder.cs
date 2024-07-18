@@ -34,19 +34,13 @@ namespace AudioSystem
             return this;
         }
 
-        public void Play(AudioClip audioClip, SoundConfiguration soundConfiguration)
+        public void Play(AudioClip audioClip, SoundConfiguration soundConfiguration, bool isFrequentSound = false)
         {
-            Play(new SoundData(audioClip, AudioController.GetSoundSettings(soundConfiguration)));
+            Play(new SoundData(audioClip, AudioController.GetSoundSettings(soundConfiguration), isFrequentSound));
         }
 
         public void Play(SoundData soundData)
         {
-            if (soundData == null)
-            {
-                Debug.LogError("SoundData is null");
-                return;
-            }
-
             if (!AudioController.CanPlaySound(soundData)) return;
 
             SoundEmitter soundEmitter = AudioController.Get();
@@ -63,7 +57,7 @@ namespace AudioSystem
                 soundEmitter.WithRandomPitch();
             }
 
-            if (soundData.soundSettings.frequentSound)
+            if (soundData.isFrequentSound)
             {
                 soundEmitter.Node = AudioController.FrequentSoundEmitters.AddLast(soundEmitter);
             }

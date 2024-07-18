@@ -49,7 +49,7 @@ namespace AudioSystem
 
         public static bool CanPlaySound(SoundData data)
         {
-            if (!data.soundSettings.frequentSound) return true;
+            if (!data.isFrequentSound) return true;
 
             if (FrequentSoundEmitters.Count < _instance.maxSoundInstances) return true;
 

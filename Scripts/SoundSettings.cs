@@ -9,7 +9,7 @@ namespace AudioSystem
         public AudioMixerGroup mixerGroup;
         public bool loop;
         public bool playOnAwake;
-        public bool frequentSound;
+
 
         public bool mute;
         public bool bypassEffects;
