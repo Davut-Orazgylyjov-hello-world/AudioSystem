@@ -8,6 +8,7 @@ namespace AudioSystem
         [SerializeField] private AudioClip[] sounds;
         [SerializeField] private SoundConfiguration soundConfiguration;
         [SerializeField] [Range(0f, 1f)] private float volume = 1f;
+        [SerializeField] private bool isFrequent = false;
 
         private void OnEnable()
         {
@@ -19,7 +20,7 @@ namespace AudioSystem
             AudioController.CreateSoundBuilder()
                 .WithVolume(volume)
                 .WithPosition(transform.position)
-                .Play(GetRandomClip(), soundConfiguration);
+                .Play(GetRandomClip(), soundConfiguration, isFrequent);
         }
 
         private AudioClip GetRandomClip()
