@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7729290974201545379}
   - component: {fileID: 1795818336110694268}
   m_Layer: 0
-  m_Name: RandomSoundOnEnable
+  m_Name: RandomSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
