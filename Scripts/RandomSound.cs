@@ -30,7 +30,7 @@ namespace AudioSystem
                 PlayRandomSound();
         }
 
-        private void PlayRandomSound()
+        public void PlayRandomSound()
         {
             AudioController.CreateSoundBuilder()
                 .WithVolume(volume)
