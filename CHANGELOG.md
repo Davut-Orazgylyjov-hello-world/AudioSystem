@@ -2,3 +2,5 @@
  - Initial Version
 ## [1.0.1] - 21 September 2024
  - Upgrarded Random Sound script and object
+## [1.0.2] - 21 September 2024
+ - Fixed runtime scripts bug
