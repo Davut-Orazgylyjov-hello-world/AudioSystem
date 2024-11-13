@@ -30,6 +30,7 @@ namespace AudioSystem
                         GameObject instance = Instantiate(prefab);
                         _instance = instance.GetComponent<AudioController>();
                         DontDestroyOnLoad(_instance.gameObject);
+                        _instance.InitializePool();
 
                         if (_instance != null)
                         {
@@ -69,6 +70,7 @@ namespace AudioSystem
             {
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
+                InitializePool();
             }
             else if (_instance != this)
             {
