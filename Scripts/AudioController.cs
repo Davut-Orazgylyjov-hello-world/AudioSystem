@@ -17,6 +17,38 @@ namespace AudioSystem
         [SerializeField] private SoundSettings[] soundSettings;
 
         private static AudioController _instance;
+        
+        public static AudioController Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    GameObject prefab = Resources.Load<GameObject>(nameof(AudioController));
+                    if (prefab != null)
+                    {
+                        GameObject instance = Instantiate(prefab);
+                        _instance = instance.GetComponent<AudioController>();
+                        
+                        if (_instance != null)
+                        {
+                            DontDestroyOnLoad(instance);
+                        }
+                        else
+                        {
+                            Debug.LogError("Префаб AudioController не содержит компонент AudioController!");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError("Не удалось найти префаб AudioController в Resources!");
+                    }
+                }
+                return _instance;
+            }
+            set => _instance = value;
+        }
+
 
         public static readonly LinkedList<SoundEmitter> FrequentSoundEmitters = new();
 
@@ -32,17 +64,22 @@ namespace AudioSystem
 
         private void Awake()
         {
-            if (_instance == null)
-                _instance = this;
-            
-            InitializePool();
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else if (Instance != this)
+            {
+                Destroy(gameObject); 
+            }
         }
-
-        public static Transform Transform => _instance.transform;
+        
+        public static Transform Transform => Instance.transform;
 
         public static SoundSettings GetSoundSettings(SoundConfiguration soundConfiguration)
         {
-            return _instance.soundSettings[(int) soundConfiguration];
+            return Instance.soundSettings[(int) soundConfiguration];
         }
 
         public static SoundBuilder CreateSoundBuilder() => new();
@@ -51,7 +88,7 @@ namespace AudioSystem
         {
             if (!data.isFrequentSound) return true;
 
-            if (FrequentSoundEmitters.Count < _instance.maxSoundInstances) return true;
+            if (FrequentSoundEmitters.Count < Instance.maxSoundInstances) return true;
 
             try
             {
@@ -68,12 +105,12 @@ namespace AudioSystem
 
         public static SoundEmitter Get()
         {
-            return _instance._soundEmitterPool.Get();
+            return Instance._soundEmitterPool.Get();
         }
 
         public static void ReturnToPool(SoundEmitter soundEmitter)
         {
-            _instance._soundEmitterPool.Release(soundEmitter);
+            Instance._soundEmitterPool.Release(soundEmitter);
         }
 
         public void StopAll()
