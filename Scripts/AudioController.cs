@@ -29,6 +29,7 @@ namespace AudioSystem
                     {
                         GameObject instance = Instantiate(prefab);
                         _instance = instance.GetComponent<AudioController>();
+                        DontDestroyOnLoad(_instance.gameObject);
 
                         if (_instance != null)
                         {
@@ -64,13 +65,14 @@ namespace AudioSystem
 
         private void Awake()
         {
-            if (_instance == null || _instance != this)
+            if (_instance == null)
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else if (_instance != this)
             {
                 Destroy(gameObject);
-            }
-            else
-            {
-                DontDestroyOnLoad(gameObject);
             }
         }
 
