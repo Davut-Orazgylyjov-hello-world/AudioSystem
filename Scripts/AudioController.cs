@@ -17,7 +17,7 @@ namespace AudioSystem
         [SerializeField] private SoundSettings[] soundSettings;
 
         private static AudioController _instance;
-        
+
         public static AudioController Instance
         {
             get
@@ -29,7 +29,7 @@ namespace AudioSystem
                     {
                         GameObject instance = Instantiate(prefab);
                         _instance = instance.GetComponent<AudioController>();
-                        
+
                         if (_instance != null)
                         {
                             DontDestroyOnLoad(instance);
@@ -44,9 +44,9 @@ namespace AudioSystem
                         Debug.LogError("Не удалось найти префаб AudioController в Resources!");
                     }
                 }
+
                 return _instance;
             }
-            set => _instance = value;
         }
 
 
@@ -64,17 +64,16 @@ namespace AudioSystem
 
         private void Awake()
         {
-            if (Instance == null)
+            if (_instance == null || _instance != this)
             {
-                Instance = this;
+                Destroy(gameObject);
+            }
+            else
+            {
                 DontDestroyOnLoad(gameObject);
             }
-            else if (Instance != this)
-            {
-                Destroy(gameObject); 
-            }
         }
-        
+
         public static Transform Transform => Instance.transform;
 
         public static SoundSettings GetSoundSettings(SoundConfiguration soundConfiguration)
