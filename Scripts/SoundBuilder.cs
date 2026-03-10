@@ -6,6 +6,7 @@ namespace AudioSystem
     {
         private Vector3 _position = Vector3.zero;
         private bool _randomPitch;
+        private float _pitch = 1f;
         private float _volume = 1f;
         private float _timePlay;
 
@@ -16,6 +17,12 @@ namespace AudioSystem
             return this;
         }
 
+        public SoundBuilder WithPitch(float pitch)
+        {
+            _pitch = pitch;
+            return this;
+        }
+        
         public SoundBuilder WithRandomPitch()
         {
             _randomPitch = true;
@@ -52,6 +59,8 @@ namespace AudioSystem
             if (_timePlay != 0)
                 soundEmitter.WithTimePlay(_timePlay);
 
+            WithPitch(_pitch);
+            
             if (_randomPitch)
             {
                 soundEmitter.WithRandomPitch();

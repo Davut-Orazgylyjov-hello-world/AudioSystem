@@ -104,6 +104,11 @@ namespace AudioSystem
             audioSource.pitch += Random.Range(min, max);
         }
 
+        public void WithPitch(float pitch)
+        {
+            audioSource.pitch = pitch;
+        }
+
         public void WithVolume(float volume)
         {
             audioSource.volume = volume;
