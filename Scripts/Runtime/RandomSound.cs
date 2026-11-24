@@ -1,44 +1,44 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
-using AudioSystem;
 
-public class RandomSound : MonoBehaviour
+namespace AudioSystem
 {
-    private enum ActivateOn
+    public class RandomSound : MonoBehaviour
     {
-        Enable,
-        Function,
-        Start
-    }
+        private enum ActivateOn
+        {
+            Enable,
+            Function,
+            Start
+        }
 
-    [SerializeField] private AudioClip[] sounds;
-    [SerializeField] private SoundConfiguration soundConfiguration;
-    [SerializeField] private ActivateOn activateOn;
-    [SerializeField] [Range(0f, 1f)] private float volume = 1f;
-    [SerializeField] private bool isFrequent = false;
+        [SerializeField] private AudioClip[] sounds;
+        [SerializeField] private SoundConfiguration soundConfiguration;
+        [SerializeField] private ActivateOn activateOn;
+        [SerializeField] [Range(0f, 1f)] private float volume = 1f;
+        [SerializeField] private bool isFrequent;
 
-    private void OnEnable()
-    {
-        if (activateOn == ActivateOn.Enable)
-            PlayRandomSound();
-    }
+        private void OnEnable()
+        {
+            if (activateOn == ActivateOn.Enable)
+                PlayRandomSound();
+        }
 
-    private void Start()
-    {
-        if (activateOn == ActivateOn.Start)
-            PlayRandomSound();
-    }
+        private void Start()
+        {
+            if (activateOn == ActivateOn.Start)
+                PlayRandomSound();
+        }
 
-    public void PlayRandomSound()
-    {
-        AudioController.CreateSoundBuilder()
-            .WithVolume(volume)
-            .WithPosition(transform.position)
-            .Play(GetRandomClip(), soundConfiguration, isFrequent);
-    }
+        public void PlayRandomSound()
+        {
+            if (sounds == null || sounds.Length == 0) return;
 
-    private AudioClip GetRandomClip()
-    {
-        return sounds[Random.Range(0, sounds.Length)];
+            Sound.Clip(sounds[Random.Range(0, sounds.Length)])
+                .Config(soundConfiguration)
+                .At(transform.position)
+                .Volume(volume)
+                .Frequent(isFrequent)
+                .Play();
+        }
     }
 }

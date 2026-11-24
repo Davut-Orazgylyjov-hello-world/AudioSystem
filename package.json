@@ -1,9 +1,9 @@
 {
   "name": "com.orazgylyjovfuteres.audiosystem",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "displayName": "Orazgylyjov AudioSystem",
   "description": "AudioSystem for all projects",
-  "unity": "2019.1",
+  "unity": "2021.3",
   "keywords": [
     "AudioSystem",
     "upm"

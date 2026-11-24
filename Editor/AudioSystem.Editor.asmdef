@@ -1,0 +1,9 @@
+{
+    "name": "AudioSystem.Editor",
+    "references": [
+        "AudioSystem"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}

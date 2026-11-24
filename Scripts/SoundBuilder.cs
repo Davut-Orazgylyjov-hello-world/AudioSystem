@@ -2,76 +2,121 @@ using UnityEngine;
 
 namespace AudioSystem
 {
-    public class SoundBuilder
+    public struct SoundBuilder
     {
-        private Vector3 _position = Vector3.zero;
-        private bool _randomPitch;
-        private float _pitch = 1f;
-        private float _volume = 1f;
-        private float _timePlay;
+        internal AudioClip _clip;
+        internal SoundSettings _settings;
+        internal Transform _target;
+        internal Vector3 _position;
+        internal float _volume;
+        internal float _pitch;
+        internal float _randomPitch;
+        internal float _duration;
+        internal float _fadeIn;
+        internal SoundConfiguration _configuration;
+        internal bool _hasConfiguration;
+        internal bool _hasPosition;
+        internal bool _hasVolume;
+        internal bool _hasPitch;
+        internal bool _voice;
+        internal bool _loop;
+        internal bool _frequent;
+        internal bool _music;
 
+        internal SoundBuilder(AudioClip clip)
+        {
+            this = default;
+            _clip = clip;
+        }
 
-        public SoundBuilder WithPosition(Vector3 position)
+        public SoundBuilder Voice()
+        {
+            _voice = true;
+            return this;
+        }
+
+        public SoundBuilder At(Vector3 position)
         {
             _position = position;
+            _hasPosition = true;
             return this;
         }
 
-        public SoundBuilder WithPitch(float pitch)
+        public SoundBuilder Follow(Transform target)
         {
-            _pitch = pitch;
-            return this;
-        }
-        
-        public SoundBuilder WithRandomPitch()
-        {
-            _randomPitch = true;
+            _target = target;
             return this;
         }
 
-        public SoundBuilder WithVolume(float volume)
+        public SoundBuilder Volume(float volume)
         {
             _volume = volume;
+            _hasVolume = true;
             return this;
         }
 
-        public SoundBuilder WithTimePlay(float seconds)
+        public SoundBuilder Pitch(float pitch)
         {
-            _timePlay = seconds;
+            _pitch = pitch;
+            _hasPitch = true;
             return this;
         }
 
-        public void Play(AudioClip audioClip, SoundConfiguration soundConfiguration, bool isFrequentSound = false)
+        public SoundBuilder RandomPitch(float range = 0.05f)
         {
-            Play(new SoundData(audioClip, AudioController.GetSoundSettings(soundConfiguration), isFrequentSound));
+            _randomPitch = range;
+            return this;
         }
 
-        public void Play(SoundData soundData)
+        public SoundBuilder Duration(float seconds)
         {
-            if (!AudioController.CanPlaySound(soundData)) return;
+            _duration = seconds;
+            return this;
+        }
 
-            SoundEmitter soundEmitter = AudioController.Get();
-            soundEmitter.Initialize(soundData);
-            soundEmitter.transform.position = _position;
-            soundEmitter.transform.parent = AudioController.Transform;
+        public SoundBuilder FadeIn(float seconds)
+        {
+            _fadeIn = seconds;
+            return this;
+        }
 
-            soundEmitter.WithVolume(_volume);
-            if (_timePlay != 0)
-                soundEmitter.WithTimePlay(_timePlay);
+        public SoundBuilder Loop(bool loop = true)
+        {
+            _loop = loop;
+            return this;
+        }
 
-            WithPitch(_pitch);
-            
-            if (_randomPitch)
-            {
-                soundEmitter.WithRandomPitch();
-            }
+        public SoundBuilder Frequent(bool frequent = true)
+        {
+            _frequent = frequent;
+            return this;
+        }
 
-            if (soundData.isFrequentSound)
-            {
-                soundEmitter.Node = AudioController.FrequentSoundEmitters.AddLast(soundEmitter);
-            }
+        public SoundBuilder Config(SoundConfiguration configuration)
+        {
+            _configuration = configuration;
+            _hasConfiguration = true;
+            return this;
+        }
 
-            soundEmitter.Play();
+        public SoundBuilder Settings(SoundSettings settings)
+        {
+            _settings = settings;
+            return this;
+        }
+
+        public SoundHandle Play()
+        {
+            return AudioController.Play(in this);
+        }
+
+        internal readonly SoundConfiguration ResolveConfiguration(bool follow)
+        {
+            if (_hasConfiguration) return _configuration;
+
+            bool spatial = follow || _hasPosition;
+            if (_voice) return spatial ? SoundConfiguration.Voice3D : SoundConfiguration.Voice2D;
+            return spatial ? SoundConfiguration.Effect3D : SoundConfiguration.Effect2D;
         }
     }
 }
